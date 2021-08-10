@@ -1,0 +1,21 @@
+<html>
+<head><title>Image Display Test
+    </title>
+
+    <script type="text/javascript">
+
+		function openimage(){
+	        url = "factura-cup.png";
+	        img = '<img src="'+url+'">';
+	        popup = window.open("", "_self");
+	        popup.document.write(img);                        
+	        // popup.print();
+	        
+	        }
+    </script>
+
+    </head>
+<body>
+    <input type="text" onclick="openimage()" value="open image">
+</body>
+</html>

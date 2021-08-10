@@ -1,0 +1,325 @@
+<?php
+// var_dump($links);
+// print_r($item); die;
+// var_dump($item_links);
+?>
+
+<div class="wrapper wrapper-content animated fadeIn">
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="tabs-container">
+
+					<ul role="tablist" class="nav nav-tabs">
+						<li role="presentation">
+							<a href="javascript:void(0);"><strong style="color:black;"><?=$air->air_identnewitem?></strong></a>
+						</li>
+						<li role="presentation" class="active">
+							<a href="#tab1" data-toggle="tab"><?=(!is_null($item) && !is_null($item->atom_name_ro) ? $item->atom_name_ro : "Nou");?></a>
+						</li>
+					</ul>
+
+						<div class="tab-content">
+							<!--start#tab1-->
+							<div id="tab1" class="tab-pane active">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-12">
+											<form class="form-horizontal" method="POST" name="<?=$form->item->name;?>" action="<?=base_url().$form->item->segments?>">
+												<div class="content content-full-width">
+													<div class="panel-group">
+														<?php if(!is_null($item)):?>
+															<div class="row" style="background-color:#f1f1f1;margin-left:-20px;margin-right:-20px;border-bottom:30px solid #fdfdfd;padding:7px;padding-bottom:10px;">
+																<div class="form-group" style="margin:0;">
+																	<label class="col-sm-2 control-label" style="text-align:left;"><span style="color:black;font-size:17px;font-weight:normal;"><sub><i class="fa fa-plug" style="color:orange;font-size:25px;"></i></sub>&nbsp;&nbsp;Afi&scedil;eaz&abreve; pe&nbsp;</span> <i class="fa fa-angle-double-right" style="font-size:15px;"></i></label>
+																	
+																	<div class="col-sm-10">
+																		<?php if(is_null($nodes)): echo "Nu s-au gasit legaturi"; ?>
+																		<?php elseif(!is_null($nodes)): ?>
+																		<select multiple data-placeholder="Acest item nu se afiseaza pe sit. Creeaza o legatura intre acest item si sit, alegand din lista de mai jos:" class="chosen-sl-links" tabindex="4">
+																		
+																		<?php foreach($nodes as $node): ?>
+																			<?php
+																			$selected = "";
+																			if(!is_null($airdrop) && array_key_exists($node["node_id"], $airdrop)) $selected = "selected";
+																			?>
+																			<option value="<?=$node["node_id"]?>" <?=$selected?>><?=$node["denumire_ro"]?></option>
+																		<?php endforeach; ?>
+																		</select>
+																		<?php endif; ?>
+																	</div>
+																</div>
+															</div>
+														<?php endif; ?>														
+														<div class="row">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">Nume <?=$air->air_identnewitem?></label>
+																	<div class="col-sm-10">
+																		<input type="text" placeholder="Denumeste <?=$air->air_identnewitem?>" class="form-control" name="<?=$form->item->prefix;?>atom_name_ro" value="<?=(!is_null($item) && !is_null($item->atom_name_ro) ? $item->atom_name_ro : "");?>" required>
+																	</div>
+																</div>
+															</div>
+														
+														
+														<?php if(!is_null($item)):?>
+
+														
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">Nume <?=$air->air_identnewitem?><span style="color:red;"> ENG</span></label>
+																	<div class="col-sm-10">
+																		<input type="text" placeholder="Denumeste <?=$air->air_identnewitem?>" class="form-control" name="<?=$form->item->prefix;?>atom_name_en" value="<?=(!is_null($item) && !is_null($item->atom_name_en) ? $item->atom_name_en : "");?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="row">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">Pictograma</label>
+																	<div class="col-sm-10">
+																		<input type="text" placeholder="Pictograma tip html" class="form-control" name="<?=$form->item->prefix;?>i_pictograma" value="<?=(!is_null($item) && !is_null($item->i_pictograma) ? htmlspecialchars($item->i_pictograma) : "");?>">
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">
+																		<i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i> Tarif
+																	</label>
+																	<div class="col-sm-10">
+																		<input type="number" placeholder="Tarif / lei" class="form-control" name="<?=$form->item->prefix;?>i_tarif" value="<?=(!is_null($item) && !is_null($item->i_tarif) ? htmlspecialchars($item->i_tarif) : "");?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">Titlu PDF </label>
+																	<div class="col-sm-10">
+																		<input type="text" placeholder="Titlu PDF" class="form-control" name="<?=$form->item->prefix;?>titlu_pdf_ro" value="<?=(!is_null($item) && !is_null($item->titlu_pdf_ro) ? $item->titlu_pdf_ro : "");?>">
+																	</div>
+																</div>
+															</div>
+                                                            <div class="col-sm-6">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label">Titlu PDF <span style="color:red;"> ENG</span></label>
+																	<div class="col-sm-10">
+																		<input type="text" placeholder="Titlu PDF EN" class="form-control" name="<?=$form->item->prefix;?>titlu_pdf_en" value="<?=(!is_null($item) && !is_null($item->titlu_pdf_en) ? $item->titlu_pdf_en : "");?>">
+																	</div>
+																</div>
+															</div>
+                                                            
+                                                        </div>
+								
+                            
+                            <hr>
+                            
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group">
+																		<label><h3>Continut</h3></label>
+																			<textarea name="<?=$form->item->prefix;?>i_content_ro" id="ncontentro" rows="4"><?=(!is_null($item) && !is_null($item->i_content_ro) ? $item->i_content_ro : "");?></textarea>
+																</div>
+															</div>
+														</div>		
+
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group">
+																		<label><h3>Continut <span style="color:red;"> ENG</span></h3></label>
+																			<textarea name="<?=$form->item->prefix;?>i_content_en" id="ncontenten" rows="4"><?=(!is_null($item) && !is_null($item->i_content_en) ? $item->i_content_en : "");?></textarea>
+																</div>
+															</div>
+														</div>
+
+														<?php endif; ?>
+														
+														<?php if(!is_null($item)):?>
+														<div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-2">
+                                                                        <!-- <input type="file" name="poza" size="50" class="form-control"> -->
+                                                                        <!-- Button trigger modal -->
+                                                                        <div class="col-lg-2 col-md-4 col-xs-6 col-xs-12 thumb-nomg">
+                                                                            <div class="img-thumbnail-btn">
+                                                                                <button type="button" class="btn btn-primary btn-fill btn-upfile" data-toggle="modal" data-target="#inpfileModal" onClick="filesetvars('poza', 'poza')">
+                                                                                    Incarca imagine <br /><br/><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-10">
+                                                                        <div id="p_imgpoza">
+                                                                            <?php
+                                                                                if(isset($item->i) && $item->i) {
+                                                                                    foreach($item->i as $img) {
+                                                                                        echo '
+                                                                                            <div id="imgpoza-' .$img->id. '" class="col-lg-2 col-md-4 col-xs-6 col-xs-12 thumb-nomg">
+                                                                                                <div class="img-thumbnail" style="padding:2px;">
+                                                                                                    <img class="img-responsive" src="' .$imgpathitem.$img->img. '">
+                                                                                                    <div class="thumbfooter">
+                                                                                                        <a href="javascript:void(0)" onClick="return ajxdelimg(' .$img->id. ', \'poza\');return false"><code-remove>Elimina</code-remove></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        ';
+                                                                                    }
+                                                                                }
+                                                                            ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+															</div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <?php
+                                                                        if(empty($item->pdf))
+                                                                        {
+                                                                    ?>
+                                                                    <div id="upload__pdf" class="col-sm-2">
+                                                                        <!-- <input type="file" name="poza" size="50" class="form-control"> -->
+                                                                        <!-- Button trigger modal -->
+                                                                        <div class="col-lg-2 col-md-4 col-xs-6 col-xs-12 thumb-nomg">
+                                                                            <div class="img-thumbnail-btn">
+                                                                                <button type="button" class="btn btn-primary btn-fill btn-upfile" data-toggle="modal" data-target="#inpfileModalPDF" onClick="filesetvars('poza', 'poza')">
+                                                                                    Incarca pdf <br /><br/><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <?php
+                                                                        }
+                                                                    ?>
+                                                                    <div class="col-sm-10">
+                                                                       <div id="file_pdf">
+                                                                            <?php
+                                                                                if(isset($item->pdf) && $item->pdf)
+                                                                                {
+                                                                                    echo '
+                                                                                        <div id="pdf_' .$item->atom_id. '" class="col-lg-2 col-md-4 col-xs-6 col-xs-12 thumb-nomg">
+                                                                                            <div class="" style="padding:2px;">
+                                                                                                <a href="'.SITE_URL.PATH_SERVICII_PDF.$item->pdf . '" style="color:red;font-size:20px;" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                                                                                                <div class="thumbfooter">
+                                                                                                    <a href="javascript:void(0)" onClick="return ajxdelpdf(' .$item->atom_id. ', \'pdf\');return false"><code-remove>Elimina</code-remove></a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    ';
+                                                                                }
+                                                                            ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+														</div>
+														<?php endif; ?>
+
+														
+														<fieldset>
+															<div class="form-group">
+																<div class="col-sm-12">
+																	<button class="btn btn-white" type="button" onClick="location.href='<?=base_url()?>/texte_diverse'">Anuleaza</button>
+																	<button class="btn btn-primary" type="submit" name="<?=$form->item->prefix;?>submit"><?=(isset($uri->item) && $uri->item == "i" ? "Creeaza " . $air->air_identnewitem : "Salveaza modificarile")?></button>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+												</div>
+											</form>
+										</div> <!-- end col-md-12 -->
+									</div>
+								</div>
+							</div><!--end#tab1-->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+</div>
+        <!-- Modal upload image -->
+        <form method="POST" id="fmodalupfile" class="form-horizontal" enctype="multipart/form-data">
+          <div class="modal fade" id="inpfileModal" tabindex="-1" role="dialog" aria-labelledby="inpfileModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="inpfileModalLabel">Incarca imagine</h4>
+                </div>
+                <div class="modal-body">
+                  <input type="file" name="inpfile" size="50" class="form-control" />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Renunta</button>
+                  <button type="button" class="btn btn-primary btn-fill" onClick="return upfile(<?=$item->atom_id?>);return false;">Incarca imaginea</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+<style>
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+</style>
+    <!-- Modal upload image -->
+    <form method="POST" id="fmodalupfilepdf" class="form-horizontal" enctype="multipart/form-data">
+      <div class="modal fade" id="inpfileModalPDF" tabindex="-1" role="dialog" aria-labelledby="inpfileModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="inpfileModalLabel">INCARCA UN FISER PDF</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="fileUpload btn btn-primary">
+                            <span>Alege fisier</span>
+                            <input id="uploadBtn_avere" type="file" class="upload" name="inpfile_pdf" size="50" />
+                        </div>
+                    </div>  
+                    <div class="col-md-10">
+                        <input id="uploadFile_avere" class="form-control fileUpload" placeholder="Alege (pdf)..." disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Renunta</button>
+              <button type="button" class="btn btn-primary btn-fill" onClick="return upfilePdf(<?=$item->atom_id?>);return false;">Incarca</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+<script>
+
+    document.getElementById("uploadBtn_avere").onchange = function () {
+        document.getElementById("uploadFile_avere").value = this.value;
+    };
+    document.getElementById("uploadBtn_interes").onchange = function () {
+        document.getElementById("uploadFile_interes").value = this.value;
+    };
+    $('.chosen-select').chosen({width: "100%"});
+</script>

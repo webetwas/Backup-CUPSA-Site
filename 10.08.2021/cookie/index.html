@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politica Cookies</title>
+
+<link rel="stylesheet" type="text/css" href="cookies.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style media="screen">
+
+</style>
+
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+
+
+</style>
+
+
+</head>
+<body>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="text-align:center;">Centrul de preferințe pentru confidențialitate</h4>
+            </div>
+            <div class="modal-body">
+
+							<div class="tab">
+								<button class="tablinks" onclick="openCookies(event, 'Necesare')" id="defaultOpen">Cookie strict necesare</button>
+								<button class="tablinks" onclick="openCookies(event, 'Nonnecesare')">Cookies Non-Necesare</button>
+								<!-- <button class="tablinks" onclick="openCookies(event, 'Diverse')">Diverse</button> -->
+								<button class="tablinks" >
+									<a href="https://cookiepedia.co.uk/giving-consent-to-cookies" class="tablinks" style="text-decoration:none; color:black;" target="_blank">Mai multe informatii</a>
+								</button>
+							</div>
+
+							<div id="Necesare" class="tabcontent">
+								<h4 style="color:#80BE5A;">Tehnologii de tip Cookie strict necesare</h4>
+								<p>
+									Acest cookie este setat de site-uri web folosind anumite versiuni
+									ale soluției de respectare a legii privind cookie-urile de la Cup Focsani. <br>
+									Este setat după ce vizitatorii au văzut un aviz de informare privind
+									cookie-urile și, în unele cazuri, numai atunci când închid în mod activ avizul.
+									Acesta permite site-ului web să nu afișeze mesajul de mai multe ori unui utilizator.<br>
+									<strong>Cookie-ul are o durată de viață de un an și nu conține informații personale.</strong>
+								</p>
+								<hr>
+								<p>
+									Cookie <strong>ci_session</strong> <br>
+									Cookie asociat cu platforma website www.cupfocsani.ro. Este utilizat pentru a menține o stare de
+									functionalitate în timpul unei sesiuni de browser pentru a constata experienței utilizatorului.
+									În mod implicit, cookie-ul este distrus la încheierea sesiunii browserului.
+								</p>
+								<p>
+									Informații prin Tehnologii de tip Cookie în Scopul sus-menționat (și tipul de fișiere folosite)<br>
+									<div class="col-sm-5" style="text-align: center">
+										<a href="http://www.cupfocsani.ro/p/politica-cookie">Politica Cookies</a>
+									</div>
+									<div class="col-sm-7" style="text-align: center">
+										<a href="http://www.cupfocsani.ro/p/politica-de-confidentialitate">Politica de confidentialitate</a>
+									</div>
+								</p>
+							</div>
+
+							<div id="Nonnecesare" class="tabcontent">
+								<h4>Cookies Non-necesare</h4>
+								<p>web site-ul www.cupfocsani.ro nu prelucreaza cookies</p>
+							</div>
+
+							<div id="Diverse" class="tabcontent">
+								<h3>Diverse</h3>
+								<p>Diverse.</p>
+							</div>
+							<div style="clear:both"></div>
+							<br>
+							<div class="alert alert-info">
+								<strong>NOTA:</strong> Cookie-urile de sesiune sunt stocate temporar în memoria browserului și sunt distruse atunci
+								când este închis website-ul www.cupfocsani.ro.
+							</div>
+						</div>
+
+
+
+						<div class="modal-footer">
+	          	<button type="button" class="btn btn-success" data-dismiss="modal">Salveaza</button>
+	        	</div>
+
+					</div>
+
+      </div>
+  </div>
+
+
+
+<script>
+function openCookies(evt, cookieName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cookieName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+<script src="" charset="utf-8">
+
+		$(document).ready(function() {
+		    var yetVisited =sessionStorage['visited'];
+		    if (!yetVisited) {
+		        $("#myModal").modal("show").on("shown", function () {
+		            window.setTimeout(function () {
+		                $("#myModal").modal("hide");
+		            }, 20000);
+		        });
+
+		        // open popup
+		       sessionStorage['visited'] ="yes";
+		    }
+		    });
+
+</script>
+</body>
+</html>

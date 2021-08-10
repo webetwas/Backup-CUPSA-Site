@@ -1,0 +1,1 @@
+<body <?=(!is_null($body_class) ? 'class="' .$body_class. '"' : 'class="home-two"')?> oncontextmenu="return false;" onkeydown="javascript:Disable_Control_C()">
